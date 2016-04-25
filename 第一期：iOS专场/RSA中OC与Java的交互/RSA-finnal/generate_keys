@@ -1,0 +1,10 @@
+#!/bin/bash
+CMD_PATH=`dirname $0`
+cd $CMD_PATH
+mkdir rsakey
+cd rsakey
+openssl genrsa -out private_key.pem 2048
+openssl rsa -in private_key.pem -pubout -out public_key.pem
+openssl rsa -in private_key.pem -out rsa_public_key.pem -pubout
+openssl pkcs8 -topk8 -in private_key.pem -out pkcs8_private_key.pem -nocrypt
+exit 0
